@@ -1,0 +1,15 @@
+{
+    "dev": {
+        "appName": "node_2x_api",
+        "port": "3000",
+        "database": {
+            "host": "localhost",
+            "bucket": "retailsample",
+            "username": "Administrator",
+            "password": "password"
+        },
+        "secret": "4*@L$VzRp&E%cYZDSoO^E6IPyygYpKHTXJtlOlt!zKTZF@@6l81^rJ1xmCPN%MD2",
+        "sessionTTL": 300
+    },
+    "prod": {}
+}
