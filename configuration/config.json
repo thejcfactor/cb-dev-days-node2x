@@ -3,7 +3,7 @@
         "appName": "node_2x_api",
         "port": "3000",
         "database": {
-            "host": "localhost",
+            "host": "host.docker.internal",
             "bucket": "retailsample",
             "username": "Administrator",
             "password": "password"
