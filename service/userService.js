@@ -349,7 +349,7 @@ function updateAddress(request, callback) {
     if (!err) {
       //NOP is to take into account potential lab for saving/updating address
       if (result == "NOP") {
-        callback(response);
+        return callback(response);
       }
       response.data = result;
       response.message = "Successfully updated address.";
@@ -371,7 +371,7 @@ function saveAddress(request, callback) {
     if (!err) {
       //NOP is to take into account potential lab for saving/updating address
       if (result == "NOP") {
-        callback(response);
+        return callback(response);
       }
       response.data = result;
       response.message = "Successfully saved address.";
