@@ -387,7 +387,24 @@ class Repository {
        *         orderDate (hint use MILLIS_TO_STR())
        *
        */
-      callback(null, "NOP");
+      let sql = `
+        SELECT 
+          META(o).id, 
+          o.orderStatus, 
+          o.shippingInfo.name AS shippedTo, 
+          o.grandTotal, 
+          o.lineItems, 
+          MILLIS_TO_STR(o.orderDate) AS orderDate
+        FROM \`${this.bucketName}\` o
+        WHERE o.doc.type = 'order' AND o.custId=$1
+        ORDER BY o.orderDate DESC NULLS FIRST`;
+
+      let n1qlQuery = N1qlQuery.fromString(sql);
+
+      this.bucket.query(n1qlQuery, [customerId], function(err, rows) {
+        let orders = !err ? rows : null;
+        callback(err, orders);
+      });
     } catch (err) {
       //Optional - add business logic to handle error types
       outputMessage(err, "repository.js:getOrders() - error:");
@@ -407,7 +424,22 @@ class Repository {
        *         tax, lineItems, grandTotal, orderId, _id
        *
        */
-      callback(null, "NOP");
+      let sql = `
+        SELECT o.doc, o.custId, o.orderStatus,
+        o.billingInfo, o.shippingInfo, o.shippingTotal,
+        o.tax, o.lineItems, o.grandTotal, o.orderId, o._id
+        FROM \`${this.bucketName}\` o
+        WHERE o.doc.type = 'order' 
+          AND o.custId=$1 AND o.orderStatus = 'created'
+        ORDER BY o.orderDate DESC NULLS FIRST
+        LIMIT 1;`;
+
+      let n1qlQuery = N1qlQuery.fromString(sql);
+
+      this.bucket.query(n1qlQuery, [customerId], function(err, rows) {
+        let order = !err ? rows : null;
+        callback(err, order);
+      });
     } catch (err) {
       //Optional - add business logic to handle error types
       outputMessage(err, "repository.js:getNewOrder() - error:");
@@ -442,7 +474,7 @@ class Repository {
        */
       callback(null, "NOP");
     } catch (err) {
-      //Optional - add business logic to handle error types
+      //Optional - add business logic to handle error types      
       outputMessage(err, "repository.js:saveAddress() - error:");
       callback(err, null);
     }

@@ -3,7 +3,8 @@
         "appName": "node_2x_api",
         "port": "3000",
         "database": {
-            "host": "host.docker.internal",
+            "host": "devday-il-0000.se-couchbasedemos.com",
+            "secure": true,
             "bucket": "retailsample",
             "username": "Administrator",
             "password": "password"

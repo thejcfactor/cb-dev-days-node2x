@@ -22,6 +22,11 @@ const outputMessage = require("library/outputMessage");
  *         description: The product to search for
  *         schema:
  *           type: string
+ *       - in: query
+ *         name: fuzziness
+ *         description: Fuzziness in FTS search (keep < 2)
+ *         schema:
+ *           type: integer
  *     responses:
  *       200:
  *         description: list of products

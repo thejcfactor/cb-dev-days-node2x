@@ -227,50 +227,8 @@ class Repository {
        *        use "basic-search" as index name for searchQuery
        *  2.  K/V getMulti() using FTS results
        *
-       */
-
-      let match = searchQuery
-        .term(product)
-        .fuzziness(fuzziness)
-        .field("dispName");
-
-      let query = searchQuery
-        .new("basic-search", match)
-        .limit(10)
-        .highlight();
-
-      let scope = this;
-      let results = [];
-
-      this.bucket.query(query, function(err, res, meta) {
-        console.log(product);
-        if (!err && res.length > 0) {
-          //uncomment to see raw results
-          // outputMessage(
-          //   res,
-          //   "repository.js:searchProducts() - search results:"
-          // );
-          let docIds = res.map(({ id }) => id);
-          //uncomment to see doc count
-          // outputMessage(
-          //   docIds.length,
-          //   "repository.js:searchProducts() - total docs:"
-          // );
-          scope.bucket.getMulti(docIds, function(err, docs) {
-            if (!err) {
-              for (var key in docs) {
-                if (docs[key].error) {
-                  continue;
-                }
-                results.push(docs[key].value);
-              }
-            }
-            callback(err, results);
-          });
-        } else {
-          callback(err, null);
-        }
-      });
+       */      
+      callback(null, "NOP");
     } catch (err) {
       //Optional - add business logic to handle error types
       outputMessage(err, "repository.js:searchProducts() - error:");
@@ -285,10 +243,7 @@ class Repository {
        *  1.  get order:  bucket.get(key)
        *
        */
-      this.bucket.get(orderId, function(err, doc) {
-        let order = !err ? doc.value : null;
-        callback(err, order);
-      });
+      callback(null, "NOP");
     } catch (err) {
       //Optional - add business logic to handle error types
       outputMessage(err, "repository.js:getOrder() - error:");
@@ -305,27 +260,7 @@ class Repository {
        *  3.  IF successful insert, GET order
        *
        */
-      let scope = this;
-      this.getLastOrderId(function(err, result) {
-        if (result) {
-          let id = result + 1;
-          let createDateTimeStamp = Math.floor(new Date() / 1000);
-          let key = `order_${id}`;
-
-          order._id = key;
-          order.orderId = id;
-          order.doc.created = createDateTimeStamp;
-          order.doc.createdBy = order.custId;
-
-          scope.bucket.insert(key, order, function(err, result) {
-            if (!err && result) {
-              scope.getOrder(key, callback);
-            } else {
-              callback(err, null);
-            }
-          });
-        }
-      });
+      callback(null, "NOP");
     } catch (err) {
       //Optional - add business logic to handle error types
       outputMessage(err, "repository.js:saveOrder() - error:");
@@ -341,12 +276,7 @@ class Repository {
        *  2.  replace order:  bucket.replace(key, document)
        *
        */
-      let key = `order_${order.orderId}`;
-      order.doc.modified = Math.floor(new Date() / 1000);
-      order.doc.modifiedBy = order.custId;
-      this.bucket.replace(key, order, function(err, result) {
-        callback(err, !err ? key : null);
-      });
+      callback(null, "NOP");
     } catch (err) {
       //Optional - add business logic to handle error types
       outputMessage(err, "repository.js:replaceOrder() - error:");
@@ -361,10 +291,7 @@ class Repository {
        *  1.  delete order:  bucket.remove(key)
        *
        */
-      this.bucket.remove(orderId, function(err, result) {
-        let success = !err ? result != null : null;
-        callback(err, success);
-      });
+      callback(null, "NOP");
     } catch (err) {
       //Optional - add business logic to handle error types
       outputMessage(err, "repository.js:deleteOrder() - error:");
