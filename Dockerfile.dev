@@ -1,0 +1,24 @@
+#CBS is only supported on debian 8x (jessie) and 9x (stretch) as of 2020-07-xx
+FROM node:12.18.2-stretch-slim
+
+RUN apt-get update
+RUN apt-get install -y lsb-release wget
+RUN wget http://packages.couchbase.com/releases/couchbase-release/couchbase-release-1.0-6-amd64.deb
+RUN dpkg -i couchbase-release-1.0-6-amd64.deb
+RUN apt-get update && apt-get install -y libcouchbase-dev libcouchbase2-bin build-essential
+#RUN apt-get install -y curl pyton
+
+WORKDIR /app
+
+COPY ./package.json ./
+
+RUN npm install
+
+#make sure to not copy of node_modules folder
+#that will lead to problems
+#https://stackoverflow.com/questions/34822326/invalid-elf-header-node-js-with-couchbase-db
+COPY . .
+
+ENV API_PORT 3000
+
+CMD ["npm", "run", "dev"]
