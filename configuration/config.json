@@ -3,8 +3,8 @@
         "appName": "node_2x_api",
         "port": "3000",
         "database": {
-            "host": "devday-il-0000.se-couchbasedemos.com",
-            "secure": true,
+            "host": "localhost",
+            "secure": false,
             "bucket": "retailsample",
             "username": "Administrator",
             "password": "password"

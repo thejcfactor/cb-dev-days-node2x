@@ -130,28 +130,6 @@ function getUserFromSession(jwt, callback) {
   });
 }
 
-function createSession(username, callback) {
-  let response = new Response(null, "Operation not built yet.", null, null);
-
-  db.createSession(username, ttl, function(err, session) {
-    if(session.error){
-      response.message = "Error creating session.";
-      response.error = err;
-      return callback(response);
-    }
-
-    outputMessage(session, "userService.js:createSession() - session:");
-    //NOP is to take into account potential lab for creating user session
-    if (session != "NOP") {
-      response.data = session;
-      response.message = "Session created";
-      return callback(response);
-    }
-
-    callback(response);
-  });
-}
-
 function extendSession(token, callback) {
   
   let response = new Response(null, "Operation not built yet.", null, null);
@@ -270,44 +248,6 @@ function saveOrUpdateOrder(request, callback) {
   }
 }
 
-function updateOrder(order, callback) {
-  let response = new Response(null, "Operation not built yet.", null, true);
-  db.replaceOrder(order, function(err, result) {
-    if (!err) {
-      //NOP is to take into account potential lab for saving/updating order
-      if (result == "NOP") {
-        return callback(response);
-      }
-      response.data = result;
-      response.message = "Successfully updated order.";
-      callback(response);
-    } else {
-      response.message = "Error updating order.";
-      response.error = err;
-      callback(response);
-    }
-  });
-}
-
-function saveOrder(order, callback) {
-  let response = new Response(null, "Operation not built yet.", null, true);
-  db.saveOrder(order, function(err, order) {
-    if (!err) {
-      //NOP is to take into account potential lab for saving/updating order
-      if (order == "NOP") {
-        return callback(response);
-      }
-      response.data = order;
-      response.message = "Successfully saved order.";
-      callback(response);
-    } else {
-      response.message = "Error saving order.";
-      response.error = err;
-      callback(response);
-    }
-  });
-}
-
 function deleteOrder(id, callback) {
   let response = new Response(null, "Operation not built yet.", null, true);
   db.deleteOrder(id, function(err, result) {
@@ -339,23 +279,98 @@ function saveOrUpdateAddress(request, callback) {
   }
 }
 
-function updateAddress(request, callback) {
+
+/*
+ * Private/Helper methods 
+ * 
+ */
+
+function verifyUser(username, password, jwt, callback){
+  let response = new Response(null, "Operation not built yet.", null, null);
+  db.getUserInfo(username, false, function(err, userInfo){
+    if(err || !userInfo){
+      response.error = err;
+      response.message = "Could not find user.";
+      //return callback(err, null);
+      return callback(response);
+    }
+
+    if(userInfo == "NOP"){
+      return callback(response);
+    }
+
+    if(jwt){
+      response.data = userInfo;
+      response.message = "JWT - no password verification needed.";
+      return callback(response);
+    }
+
+    let passwordIsValid = bcrypt.compareSync(password, userInfo.password);
+    if(passwordIsValid){
+      response.data = userInfo;
+      response.message = "Password verified.";
+    }else{
+      response.message = "Invalid password.";
+    }
+
+    callback(response);
+  });
+}
+
+function createSession(username, callback) {
+  let response = new Response(null, "Operation not built yet.", null, null);
+
+  db.createSession(username, ttl, function(err, session) {
+    if(session.error){
+      response.message = "Error creating session.";
+      response.error = err;
+      return callback(response);
+    }
+
+    outputMessage(session, "userService.js:createSession() - session:");
+    //NOP is to take into account potential lab for creating user session
+    if (session != "NOP") {
+      response.data = session;
+      response.message = "Session created";
+      return callback(response);
+    }
+
+    callback(response);
+  });
+}
+
+function saveOrder(order, callback) {
   let response = new Response(null, "Operation not built yet.", null, true);
-  
-  db.updateAddress(request.custId, request.path, request.address, function(
-    err,
-    result
-  ) {
+  db.saveOrder(order, function(err, order) {
     if (!err) {
-      //NOP is to take into account potential lab for saving/updating address
+      //NOP is to take into account potential lab for saving/updating order
+      if (order == "NOP") {
+        return callback(response);
+      }
+      response.data = order;
+      response.message = "Successfully saved order.";
+      callback(response);
+    } else {
+      response.message = "Error saving order.";
+      response.error = err;
+      callback(response);
+    }
+  });
+}
+
+function updateOrder(order, callback) {
+  let response = new Response(null, "Operation not built yet.", null, true);
+  db.replaceOrder(order, function(err, result) {
+    if (!err) {
+      //NOP is to take into account potential lab for saving/updating order
       if (result == "NOP") {
         return callback(response);
       }
       response.data = result;
-      response.message = "Successfully updated address.";
+      response.message = "Successfully updated order.";
       callback(response);
     } else {
-      response.message = "Error updating address.";
+      response.message = "Error updating order.";
       response.error = err;
       callback(response);
     }
@@ -384,40 +399,25 @@ function saveAddress(request, callback) {
   });
 }
 
-
-/*
- * Helper methods 
- * 
- */
-
-function verifyUser(username, password, jwt, callback){
-  let response = new Response(null, "Operation not built yet.", null, null);
-  db.getUserInfo(username, false, function(err, userInfo){
-    if(err){
+function updateAddress(request, callback) {
+  let response = new Response(null, "Operation not built yet.", null, true);
+  
+  db.updateAddress(request.custId, request.path, request.address, function(
+    err,
+    result
+  ) {
+    if (!err) {
+      //NOP is to take into account potential lab for saving/updating address
+      if (result == "NOP") {
+        return callback(response);
+      }
+      response.data = result;
+      response.message = "Successfully updated address.";
+      callback(response);
+    } else {
+      response.message = "Error updating address.";
       response.error = err;
-      response.message = "Could not find user.";
-      //return callback(err, null);
-      return callback(response);
+      callback(response);
     }
-
-    if(userInfo == "NOP"){
-      return callback(response);
-    }
-
-    if(jwt){
-      response.data = userInfo;
-      response.message = "JWT - no password verification needed.";
-      return callback(response);
-    }
-
-    let passwordIsValid = bcrypt.compareSync(password, userInfo.password);
-    if(passwordIsValid){
-      response.data = userInfo;
-      response.message = "Password verified.";
-    }else{
-      response.message = "Invalid password.";
-    }
-
-    callback(response);
   });
 }

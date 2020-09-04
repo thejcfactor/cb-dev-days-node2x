@@ -107,6 +107,8 @@ router.post("/register", register);
  *     responses:
  *       200:
  *         description: logged in user
+ *       401:
+ *         description: unauthorized - invalid username and/or password
  */
 router.post("/login", login);
 
@@ -130,7 +132,6 @@ router.post("/login", login);
  *         description: logged in user
  */
 router.get("/verifyUserSession", verifyToken, verifyUserSession);
-
 
 /**
  * @swagger
@@ -416,7 +417,7 @@ function login(req, res) {
       return res.status(500).send({
         data: null,
         message: "No username and/or password provided.",
-        error: err,
+        error: null,
         authorized: null,
         requestId: reqId
       });
