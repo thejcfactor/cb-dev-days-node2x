@@ -4,7 +4,7 @@
         "port": "3000",
         "database": {
             "host": "localhost",
-            "secure": false,
+            "secure": true,
             "bucket": "retailsample",
             "username": "Administrator",
             "password": "password"

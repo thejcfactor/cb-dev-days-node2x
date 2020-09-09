@@ -12,10 +12,15 @@ const outputMessage = require("library/outputMessage");
  */
 class Repository {
   constructor() {
-    this.host = "test";
+    this.host = "";
     this.bucketName = "";
     this.username = "";
     this.password = "";
+    this.counterIds = {
+      customer: "cbdd-customer-counter",
+      user: "cbdd-user-counter",
+      order: "cbdd-order-counter",
+    };
 
     this.cluster = null;
     this.bucket = null;
@@ -96,7 +101,10 @@ class Repository {
             if (err) {
               return callback(err, null);
             }
-            scope.bucket.insert(userDoc._id, userDoc, function(err, savedUser) {
+            scope.bucket.insert(userDoc._id, userDoc, function (
+              err,
+              savedUser
+            ) {
               if (err) {
                 return callback(err, null);
               }
@@ -409,22 +417,23 @@ class Repository {
    * Helper methods:
    *    getNewCustomerDocument()
    *    getNewUserDocument()
-   *    getLastOrderId()
-   *    getLastCustomerId()
-   *    getLastUserId()
+   *    getNextOrderId()
+   *    getNextCustomerId()
+   *    getNextUserId()
    */
 
   getNewCustomerDocument(userInfo, callback) {
-    this.getLastCustomerId(function(err, custId) {
+    this.getNextCustomerId(function (err, custId) {
       if (err) {
         return callback(err, null);
       }
 
-      let key = `customer_${custId + 1}`;
+      let key = `customer_${custId}`;
       let date = new Date();
       let createDateTimeStamp = Math.floor(date / 1000);
-      let currentDay = `${date.getFullYear()}-${date.getMonth() +
-        1}-${date.getDate()}`;
+      let currentDay = `${date.getFullYear()}-${
+        date.getMonth() + 1
+      }-${date.getDate()}`;
 
       let customerDoc = {
         doc: {
@@ -434,7 +443,7 @@ class Repository {
           createdBy: 1234,
         },
         _id: key,
-        custId: custId + 1,
+        custId: custId,
         custName: {
           firstName: userInfo.firstName,
           lastName: userInfo.lastName,
@@ -473,16 +482,16 @@ class Repository {
   }
 
   getNewUserDocument(userInfo, callback) {
-    this.getLastUserId(function(err, userId) {
+    this.getNextUserId(function (err, userId) {
       if (err) {
         return callback(err, null);
       }
 
-      let key = `user_${userId + 1}`;
+      let key = `user_${userId}`;
       let userDoc = {
         docType: "user",
         _id: key,
-        userId: userId + 1,
+        userId: userId,
         username: userInfo.username,
         password: userInfo.password,
       };
@@ -490,58 +499,46 @@ class Repository {
     });
   }
 
-  getLastOrderId(callback) {
-    let sql = `
-      SELECT o.orderId 
-      FROM \`${this.bucketName}\` o 
-      WHERE o.doc.type='order' 
-      ORDER BY o.orderId DESC 
-      LIMIT 1;`;
-    let n1qlQuery = N1qlQuery.fromString(sql);
-
-    this.bucket.query(n1qlQuery, function(err, rows) {
-      if (err) {
-        return callback(err, null);
+  getNextCustomerId(callback) {
+    this.bucket.counter(
+      this.counterIds["customer"],
+      1,
+      { initial: 1000 },
+      function (err, res) {
+        if (err) {
+          return callback(err, null);
+        }
+        callback(err, res.value);
       }
-      let orderId = rows && rows.length > 0 ? parseInt(rows[0].orderId) : 0;
-      callback(err, orderId);
-    });
+    );
   }
 
-  getLastCustomerId(callback) {
-    let sql = `
-      SELECT c.custId 
-      FROM \`${this.bucketName}\` c 
-      WHERE c.doc.type='customer' 
-      ORDER BY c.custId DESC 
-      LIMIT 1;`;
-    let n1qlQuery = N1qlQuery.fromString(sql);
-
-    this.bucket.query(n1qlQuery, function(err, rows) {
-      if (err) {
-        return callback(err, null);
+  getNextUserId(callback) {
+    this.bucket.counter(
+      this.counterIds["user"],
+      1,
+      { initial: 1000 },
+      function (err, res) {
+        if (err) {
+          return callback(err, null);
+        }
+        callback(err, res.value);
       }
-      let custId = rows && rows.length > 0 ? parseInt(rows[0].custId) : 0;
-      callback(err, custId);
-    });
+    );
   }
 
-  getLastUserId(callback) {
-    let sql = `
-      SELECT u.userId 
-      FROM \`${this.bucketName}\` u 
-      WHERE u.docType='user' 
-      ORDER BY u.userId DESC 
-      LIMIT 1;`;
-    let n1qlQuery = N1qlQuery.fromString(sql);
-
-    this.bucket.query(n1qlQuery, function(err, rows) {
-      if (err) {
-        return callback(err, null);
+  getNextOrderId(callback) {
+    this.bucket.counter(
+      this.counterIds["order"],
+      1,
+      { initial: 5000 },
+      function (err, res) {
+        if (err) {
+          return callback(err, null);
+        }
+        callback(err, res.value);
       }
-      let userId = rows && rows.length > 0 ? parseInt(rows[0].userId) : 0;
-      callback(err, userId);
-    });
+    );
   }
 
   getObjectByKey(key, callback) {
