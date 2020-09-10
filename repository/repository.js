@@ -64,20 +64,13 @@ class Repository {
     });
   }
 
-  ping(services, callback) {
-    let couchbaseServices = [];
-
-    services.forEach((service) => {
-      if (service == "KeyValue") {
-        couchbaseServices.push(couchbase.ServiceType.KeyValue);
-      } else if (service == "Query") {
-        couchbaseServices.push(couchbase.ServiceType.Query);
-      } else if (service == "Search") {
-        couchbaseServices.push(couchbase.ServiceType.Search);
+  ping(callback) {
+    this.getObjectByKey("customer_0", function(err, result){
+      if(!err){
+        return callback(err, "Connected to Couchbase server.");
       }
+      callback(err,null);
     });
-
-    this.bucket.ping(couchbaseServices, callback);
   }
 
   createAccount(userInfo, callback) {

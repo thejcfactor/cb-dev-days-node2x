@@ -18,14 +18,6 @@ const db = require("repository/repository");
  *       - application/json
  *     produces:
  *       - application/json
- *     parameters:
- *       - in: query
- *         name: services
- *         description: The Couchbase services (KeyValue, Query, Search) to check on
- *         schema:
- *           type: array
- *           items:
- *             type: string
  *     responses:
  *       200:
  *         description: status of specified services
@@ -47,14 +39,6 @@ router.get("/ping", ping);
  *       - application/json
  *     produces:
  *       - application/json
- *     parameters:
- *       - in: query
- *         name: services
- *         description: The Couchbase services (KeyValue, Query, Search) to check on
- *         schema:
- *           type: array
- *           items:
- *             type: string
  *     responses:
  *       200:
  *         description: success
@@ -99,14 +83,7 @@ module.exports = router;
 
 function ping(req, res) {
   try {
-    let services = [];
-    if (!(req.query.services && req.query.services.length > 0)) {
-      services = ["KeyValue", "Query", "Search"];
-    } else if (!Array.isArray(req.query.services)) {
-      services.push(req.query.services);
-    }
-
-    db.ping(services, function(err, result) {
+    db.ping(function(err, result) {
       let response = new Response(null, "", null, null);
       if (!err) {
         response.data = result;
@@ -139,14 +116,7 @@ function authorizedPing(req, res) {
       });
     }
 
-    let services = [];
-    if (!(req.query.services && req.query.services.length > 0)) {
-      services = ["KeyValue", "Query", "Search"];
-    } else if (!Array.isArray(req.query.services)) {
-      services.push(req.query.services);
-    }
-
-    db.ping(services, function(err, result) {
+    db.ping(function(err, result) {
       let response = new Response(null, "", null, true);
       if (!err) {
         response.data = result;
