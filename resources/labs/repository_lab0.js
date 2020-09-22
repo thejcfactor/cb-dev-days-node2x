@@ -305,7 +305,6 @@ class Repository {
       /**
        * Lab 4:  N1QL operations
        *  1. Get orders for customerId
-       *     - WHERE order.orderStatus != 'created'
        *     - Document properties needed (more can be provided):
        *         id,
        *         orderStatus,

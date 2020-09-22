@@ -1,42 +1,66 @@
 {
     "doc":{
         "type":"order",
-        "schema":"1.0.0"
+        "schema":"1.0.0",
+        "created": 1598949211000,
+        "createdBy": 0,
+        "modified": 1600810411000,
+        "modifiedBy": 0
     },
     "custId": 0,
-    "orderStatus": "created",
-    "billingInfo":{},
-    "shippingInfo":{},
-    "shippingTotal":0.0,
-    "tax":0.0,
+    "orderStatus": "shipped",
+    "orderDate":1598949211000,
+    "billingInfo":{
+        "address":{
+            "address": "1234 Main St",
+            "city": "Some City",
+            "country": "US",
+            "state": "TX",
+            "zipCode": "12345"
+        },
+        "name":""
+    },
+    "shippingInfo":{
+        "address":{
+            "address": "1234 Main St",
+            "city": "Some City",
+            "country": "US",
+            "state": "TX",
+            "zipCode": "12345"
+        },
+        "name": "",
+        "shippingMethod": "3 - Business Days"
+    },
+    "shippingTotal":7.99,
+    "tax":51.51,
     "lineItems":[
         {
-            "prodId": "033a4b02-0542-4318-b16b-08b5628622a2",
-            "dispName":"Intelligent Fresh Salad",
-            "shortDescr":"Libero molestiae repellendus qui odit dignissimos aspernatur laboriosam. Ut dignissimos debitis qui. Laborum non ad quos est odio molestiae ullam quas dolorem. Similique et tenetur eaque quaerat eos qui. Beatae non enim in occaecati sint exercitationem dolores voluptatem animi. Quo aut tenetur omnis est dolores numquam fuga.",
-            "image":"http://lorempixel.com/640/480/cats",
-            "price":65.67,
-            "qty":2,
-            "subTotal":131.34
-        },
-        {
-            "prodId": "035550f6-d9ed-4be5-bff5-c19c5abeb5f9",
-            "dispName":"Refined Concrete Bacon",
-            "shortDescr":"Ea qui corrupti. Eius totam dolor itaque itaque architecto accusantium qui inventore. Sit ab consequatur quod.",
-            "image":"http://lorempixel.com/640/480/nightlife",
-            "price":90.17,
+            "prodId": "00402f25-c058-41d6-8a7c-9371c68a7503",
+            "dispName":"Unbranded Soft Car",
+            "shortDescr":"Consequatur reiciendis voluptatem ad aspernatur. Dolorem facere ut. Necessitatibus omnis sit illo vel at sint et sequi odit. Natus minima temporibus sed. Quidem et numquam nobis omnis quia accusamus.",
+            "image":"http://lorempixel.com/640/480/nature",
+            "price":142.11,
             "qty":1,
-            "subTotal":90.17
+            "subTotal":142.11
         },
         {
-            "prodId": "0402d1f4-d69f-4417-9caf-6f62131430dd",
-            "dispName":"Refined Frozen Table",
-            "shortDescr":"Adipisci qui nostrum nobis sed quia cum. Natus dolor est. Ex sit quaerat neque et. Adipisci aut velit unde perferendis quia.",
-            "image":"http://lorempixel.com/640/480/nightlife",
-            "price":36.8,
+            "prodId": "02403ee5-65c6-4374-bcf5-086f85a3c96b",
+            "dispName":"Rustic Cotton Tuna",
+            "shortDescr":"Rem quos aut architecto. Deleniti sunt rerum eius hic quia omnis. Dolor et maiores vero ex a quia aut. Quos enim voluptas qui nobis a est est repellat. Enim nulla quis explicabo est ex ex vel quidem. Est in quibusdam aut ut.",
+            "image":"http://lorempixel.com/640/480/abstract",
+            "price":121.16,
+            "qty":2,
+            "subTotal":242.32
+        },
+        {
+            "prodId": "02c48819-8975-4ab6-9c1e-03b8817cb39b",
+            "dispName":"Fantastic Cotton Car",
+            "shortDescr":"Nam fugit repellat possimus quidem dolor. Ipsa molestiae quo voluptatem dignissimos sunt voluptas. Dolor sed est eos numquam nihil reiciendis sint. Aliquid ducimus modi sed tempore numquam adipisci aliquid. Illum expedita nesciunt.",
+            "image":"http://lorempixel.com/640/480/technics",
+            "price":79.98,
             "qty":3,
-            "subTotal":110.4
+            "subTotal":239.94
         }
     ],
-    "grandTotal":331.91
+    "grandTotal":683.87
 }

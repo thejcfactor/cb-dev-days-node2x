@@ -3,6 +3,7 @@
 CWD=$(pwd)
 LABS_PATH=${CWD}/resources/labs
 REPOSITORY_FILE="${CWD}/repository/repository.js"
+CART_ORDER="${CWD}/resources/cart_order.json"
 DEFAULT_ORDER="${CWD}/resources/default_order.json"
 HOST=127.0.0.1
 PORT=3000
@@ -172,10 +173,11 @@ registerUser(){
     fi
 }
 
-createOrder(){
-    json=$(cat $DEFAULT_ORDER | jq --argjson custId ${userInfo[custId]} '.custId=$custId')
+createOrders(){
+    name="${userInfo[lastName]} ${userInfo[firstName]}"
+    #use --argjson for custId to keep it as INT
+    json=$(cat $DEFAULT_ORDER | jq --argjson custId ${userInfo[custId]} --arg name "$name" '((.custId,.doc.createdBy,.doc.modifiedBy)=$custId | (.billingInfo.name,.shippingInfo.name)=$name)')
     payload="{\"order\":$json,\"update\":false}"
-
     url="http://$HOST:$PORT/user/saveOrUpdateOrder"
     auth="Authorization: Bearer ${userInfo[token]}"
     resp=$(curl -sS -X POST $url -H "accept: */*" -H "Content-Type: application/json" -H "$auth" -d "$payload")
@@ -183,7 +185,21 @@ createOrder(){
 
     if [[ $msg == *"Successfully saved"* ]]; then
         echo
-        echo "Order successfully created."
+        echo "Processed order successfully created."
+    fi
+
+    sleep 1
+
+    json=$(cat $CART_ORDER | jq --argjson custId ${userInfo[custId]} '(.custId,.doc.createdBy)=$custId')
+    payload="{\"order\":$json,\"update\":false}"
+    url="http://$HOST:$PORT/user/saveOrUpdateOrder"
+    auth="Authorization: Bearer ${userInfo[token]}"
+    resp=$(curl -sS -X POST $url -H "accept: */*" -H "Content-Type: application/json" -H "$auth" -d "$payload")
+    msg=$(jq '.message' <<< "$resp")
+
+    if [[ $msg == *"Successfully saved"* ]]; then
+        echo
+        echo "Pending cart order successfully created."
     fi
 }
 
@@ -199,9 +215,9 @@ fi
 
 if [ $lab -ge 4 ]; then
     echo
-    echo "Creating order..."
+    echo "Creating orders..."
     sleep 1
-    createOrder
+    createOrders
 fi
 
 echo
