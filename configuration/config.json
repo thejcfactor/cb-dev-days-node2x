@@ -3,10 +3,10 @@
         "appName": "node_2x_api",
         "port": "3000",
         "database": {
-            "host": "localhost",
+            "host": "devday-il-0000.se-couchbasedemos.com",
             "secure": true,
             "bucket": "retailsample",
-            "username": "Administrator",
+            "username": "svc-devdays",
             "password": "password"
         },
         "secret": "4*@L$VzRp&E%cYZDSoO^E6IPyygYpKHTXJtlOlt!zKTZF@@6l81^rJ1xmCPN%MD2",
