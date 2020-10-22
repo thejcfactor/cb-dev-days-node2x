@@ -1,12 +1,12 @@
 # Lab 0 - Setup
 
-#### Lab Overview
+## Lab Overview
 
 In this lab, *Docker* containers for the web UI and API will be created and started.  Follow the steps below and ask for help if stuck on a step.
 
-***
+>:exclamation:**IMPORTANT**:exclamation:<br> Make sure to read all IMPORTANT, REMEMBER, NOTES and DOCUMENTATION sections as important details will be provide in those sections.
 
-#### Steps
+## Steps
 
 [Step 1: Create a working directory](#step-1-create-a-working-directory)<br> 
 [Step 2: Setup the Web UI](#step-2-setup-the-web-ui)<br> 
@@ -18,11 +18,12 @@ In this lab, *Docker* containers for the web UI and API will be created and star
 &nbsp;&nbsp;&nbsp;&nbsp;[4b: Edit the API configuration settings](#4b-edit-the-api-configuration-settings)<br> 
 &nbsp;&nbsp;&nbsp;&nbsp;[4c: Create the API *Docker* container](#4c-create-the-api-docker-container)<br> 
 &nbsp;&nbsp;&nbsp;&nbsp;[4d: Verify the API *Docker* container](#4d-verify-the-api-docker-container)<br> 
-&nbsp;&nbsp;&nbsp;&nbsp;[4e: Test the Couchbase connection](#4e-test-the-couchbase-connection)<br> 
+&nbsp;&nbsp;&nbsp;&nbsp;[4e: Test the Couchbase connection](#4e-test-the-couchbase-connection)
+<br> 
 
 ***
 
-##### Step 1: Create a working directory
+### Step 1: Create a working directory
 
 Create a working directory, the directory name is up to the lab participant.  The working directory will be the directory where the repositories for the web UI and API labs reside.
 >**Note:** *~/Documents/cbDevDays* is the working directory used as an example, the participant can chose/create their own working directory.  Make sure to use the same working directory throughout all the labs.
@@ -33,7 +34,7 @@ $ mkdir ~/Documents/cbDevDays/
 
 [Back to Steps](#steps)<br> 
 
-##### Step 2: Setup the Web UI
+### Step 2: Setup the Web UI
  
 Move into the working directory created in [Step 1](#step-1-create-a-working-directory)
 
@@ -41,7 +42,7 @@ Move into the working directory created in [Step 1](#step-1-create-a-working-dir
 $ cd ~/Documents/cbDevDays/
 ```
 
-###### 2a: Clone the web UI git repository
+#### 2a: Clone the web UI git repository
 
 *cb-dev-days-web* repository includes all resources needed to run the web UI used in the labs.  Use *git CLI* to clone the repository.
 
@@ -55,7 +56,7 @@ Once the repository has been cloned, a *cb-dev-days-web* directory should exist 
 $ cd cb-dev-days-web
 ```
 
-###### 2b: Create the web UI *Docker* container
+#### 2b: Create the web UI *Docker* container
 Start a new *Docker* container for the web UI.  A brief description of the arguments provided to our *docker run* command are described below:
 - **--rm**:  This option will allow the container to be removed when container is stoped
 - **--name**:  optional name for the created container, we will be naming this container "web"
@@ -63,7 +64,7 @@ Start a new *Docker* container for the web UI.  A brief description of the argum
 - **-v**: This is used to map volumes. 
     + **-v /app/node_modules** is bookmarking the container’s app/node_modules directory so that it is not overwritten
     + **-v $(pwd)/:/app** is mapping the current working directory to the containers working directory.  This allows you to make changes in your host machine to code and those changes will be reflected within the container.
-        > **Note:**
+        > :exclamation:**IMPORTANT:**:exclamation:
         > * **$(pwd)** is for macOS and Linux operating systems
         > * If using Windows try **${PWD}** if using PowerShell, or **%cd%** if using Command Line.
         >     - We would recommend using git bash on Windows which would allow for Linux style commands
@@ -134,7 +135,7 @@ The following web page should be displayed.
 
 [Back to Steps](#steps)<br> 
 
-##### Step 3: Create a working directory for the API labs
+### Step 3: Create a working directory for the API labs
 Move into the working directory created in [Step 1](#step-1-create-a-working-directory)
 
 ```console
@@ -150,8 +151,8 @@ $ cd node2x
 
 [Back to Steps](#steps)<br> 
 
-##### Step 4: Setup Lab 0 API
-###### 4a: Clone the API git repository
+### Step 4: Setup Lab 0 API
+#### 4a: Clone the API git repository
 *cb-dev-days-node2x* repository includes all resources needed to run the Node.js API used in the labs. Use *git CLI* to clone the repository.
 
 ```console
@@ -164,7 +165,7 @@ Once the repository has been cloned, a *cb-dev-days-node2x* directory should exi
 $ cd cb-dev-days-node2x
 ```
 
-###### 4b: Edit the API configuration settings
+#### 4b: Edit the API configuration settings
 Note the Node.js API’s project structure detailed in the [Appendix](#nodejs-api-project-structure).
 
 Move to the configuration directory in order to view/edit the **config.json** file.
@@ -176,8 +177,16 @@ $ cd configuration/
 Edit the **config.json** file using your text editor of choice.
 
 Edit the following values:
-- **Host** - Couchbase Server cluster hostname list.  This will be provided by the Couchbase team.
-    >**Note:** During the summit, host information will be provided.  However, if working on the labs separately and utilizing a local database, the hostname should be "localhost" and the "secure" should be set to false.
+- **host** - Couchbase Server cluster hostname list.  This will be provided by the Couchbase team.
+
+    >:exclamation:**IMPORTANT:**:exclamation: During the summit, host information will be provided.  However, if working on the labs outside of the summit and utilizing a local instance of Couchbase, use the following:
+    >- MacOS:<br> 
+    >&nbsp;&nbsp;&nbsp;&nbsp;**hostname**: "host.docker.internal"<br> 
+    >&nbsp;&nbsp;&nbsp;&nbsp;**secure**: false<br> 
+    >- Other:<br> 
+    >&nbsp;&nbsp;&nbsp;&nbsp;**hostname**: "localhost"<br> 
+    >&nbsp;&nbsp;&nbsp;&nbsp;**secure**: false<br> 
+
 
 ```json
 {
@@ -198,7 +207,7 @@ Edit the following values:
 }
 ```
 
-###### 4c: Create the API *Docker* container
+#### 4c: Create the API *Docker* container
 Move back to the main API working directory.
 
 ```console
@@ -233,7 +242,7 @@ Start a new *Docker* container for the API.  A brief description of the argument
 - **-v**: This is used to map volumes. 
     + **-v /app/node_modules** is bookmarking the container’s app/node_modules directory so that it is not overwritten
     + **-v $(pwd)/:/app** is mapping the current working directory to the containers working directory.  This allows you to make changes in your host machine to code and those changes will be reflected within the container.
-        > **Note:**
+        > :exclamation:**IMPORTANT:**:exclamation:
         > * **$(pwd)** is for macOS and Linux operating systems
         > * If using Windows try **${PWD}** if using PowerShell, or **%cd%** if using Command Line.
         >     - We would recommend using git bash on Windows which would allow for Linux style commands
@@ -295,8 +304,8 @@ $ docker logs api
 
 ```
 
-###### 4d: Verify the API *Docker* container
-Open a browser (we recommend Chrome or Firefox...please don’t use Internet Explorer ;)), and navigate to the API’s SwaggerUI URL:  http://localhost:3000/api-docs/
+#### 4d: Verify the API *Docker* container
+Open a browser (we recommend Chrome or Firefox...please don’t use Internet Explorer ;) ), and navigate to the API’s SwaggerUI URL:  http://localhost:3000/api-docs/
 
 The following web page should be displayed.
 
@@ -304,7 +313,7 @@ The following web page should be displayed.
 
 The Swagger page allows you to work directly with the API.  For the remainder of the labs we will be building out the functionality for certain endpoints under the Product and User paths.
 
-###### 4e: Test the Couchbase connection
+#### 4e: Test the Couchbase connection
 You can verify the Couchbase connection by using the ping endpoint under the Test path on API’s Swagger page.  The ping endpoint utilizes the SDK’s health check API (Documentation [here](https://docs.couchbase.com/nodejs-sdk/2.6/health-check.html)).  Follow the steps below (see clip after output for video of steps):
 1. Navigate to the SwaggerUI page: http://localhost:3000/api-docs/
 2. Click on the */test/ping* endpoint
@@ -323,8 +332,8 @@ You can verify the Couchbase connection by using the ping endpoint under the Tes
 
 ![SwaggerUI /test/ping endpoint](./images/swagger_test_ping.gif)
 
-##### Appendix
-###### Node.js API Project Structure
+### Appendix
+#### Node.js API Project Structure
 ```
 |—— configuration
 |  |—— config.js
