@@ -4,7 +4,7 @@
 
 In this lab, *Docker* containers for the web UI and API will be created and started.  Follow the steps below and ask for help if stuck on a step.
 
->:exclamation:**IMPORTANT**:exclamation:<br> Make sure to read all IMPORTANT, REMEMBER, NOTES and DOCUMENTATION sections as important details will be provide in those sections.
+>:exclamation:**IMPORTANT**:exclamation:<br> Make sure to read all IMPORTANT, REMEMBER, NOTES and DOCUMENTATION sections as important details will be provided in those sections.
 
 ## Steps
 

@@ -4,12 +4,12 @@
 
 The goal of this lab is to register a new user and to retrieve a customer, utilizing Couchbase’s Node.js SDK, to perform K/V get operations.   See SDK documentation for details on using K/V operations.
 
->:exclamation:**IMPORTANT**:exclamation:<br> Make sure to read all IMPORTANT, REMEMBER, NOTES and DOCUMENTATION sections as important details will be provide in those sections.
+>:exclamation:**IMPORTANT**:exclamation:<br> Make sure to read all IMPORTANT, REMEMBER, NOTES and DOCUMENTATION sections as important details will be provided in those sections.
 
 ## Steps
 
 [Step 1: Register and login](#step-1-regist-and-login)<br> 
-[Step 2: Add Logic to API](#step-2-setup-the-web-ui)<br> 
+[Step 2: Add Logic to API](#step-2-add-logic-to-api)<br> 
 
 ***
 
