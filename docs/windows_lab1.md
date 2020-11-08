@@ -8,7 +8,7 @@ The goal of this lab is to register a new user and to retrieve a customer, utili
 
 <br>
 
-[Back to Labs](./labs.md)<br> 
+[Back to Labs](./windows_labs.md)<br> 
 
 ## Steps
 

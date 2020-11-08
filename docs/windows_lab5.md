@@ -8,7 +8,7 @@ The goal of this lab is to create the logic, using Couchbase’s Node.js SDK, to
 
 <br>
 
-[Back to Labs](./labs.md)<br> 
+[Back to Labs](./windows_labs.md)<br> 
 
 ## Steps
 

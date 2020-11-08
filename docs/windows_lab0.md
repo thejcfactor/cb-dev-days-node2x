@@ -10,7 +10,7 @@ In this lab, *git* repositories for the web UI and API will be cloned to serve a
 
 <br>
 
-[Back to Labs](./labs.md)<br> 
+[Back to Labs](./windows_labs.md)<br> 
 
 ## Steps
 
