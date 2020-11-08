@@ -6,6 +6,10 @@ The goal of this lab is to create the logic to enable searching for products by 
 
 >:exclamation:**IMPORTANT**:exclamation:<br> Make sure to read all IMPORTANT, REMEMBER, NOTES and DOCUMENTATION sections as important details will be provided in those sections.
 
+<br>
+
+[Back to Labs](./labs.md)<br> 
+
 ## Steps
 
 [Step 1: Add Logic to API](#step-1-add-logic-to-api)<br> 
@@ -117,6 +121,8 @@ Once complete, make sure the *repository.js* file is saved.  Once the code has b
 
 ![Successful search results](./images/searchResults.png)
 
+[Back to Steps](#steps)<br> 
+
 ### Appendix
 #### Node.js API Project Structure
 
@@ -146,4 +152,4 @@ Once complete, make sure the *repository.js* file is saved.  Once the code has b
 |—— server.js
 ```
 
-
+[Back to Overview](#lab-overview)<br> 

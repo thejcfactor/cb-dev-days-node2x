@@ -8,6 +8,10 @@ In this lab, *git* repositories for the web UI and API will be cloned to serve a
 
 >**IMPORTANT**:<br> The commands provided in the lab should work using *PowerShell*.  Most of the commands (exceptions include creating environment variables) should also work using *Git Bash*.
 
+<br>
+
+[Back to Labs](./labs.md)<br> 
+
 ## Steps
 
 [Step 1: Create a working directory](#step-1-create-a-working-directory)<br> 
@@ -276,6 +280,8 @@ You can verify the Couchbase connection by using the ping endpoint under the Tes
 
 ![SwaggerUI /test/ping endpoint](./images/test_db_connection.gif)
 
+[Back to Steps](#steps)<br> 
+
 ### Appendix
 #### Node.js API Project Structure
 ```
@@ -303,3 +309,5 @@ You can verify the Couchbase connection by using the ping endpoint under the Tes
 |—— package.json
 |—— server.js
 ```
+
+[Back to Overview](#lab-overview)<br> 

@@ -4,6 +4,10 @@ Each lab adds new functionality to the API.  A simple e-commerce web application
 
 >:exclamation:**IMPORTANT**:exclamation:<br> Each lab contains sections marked with IMPORTANT, REMEMBER, NOTES and DOCUMENTATION.  Please be sure to read each section as it will contain important information related to the lab.
 
+<br>
+
+[Back to Project Home](../README.md)<br> 
+
 # Prerequisites
 1. *Git*
     - Used to clone code repositories
@@ -20,4 +24,4 @@ Each lab adds new functionality to the API.  A simple e-commerce web application
 
 ## Extra
 [Running local Couchbase Server instance](./local_couchbase_server.md)<br>
-[Catch-up script to move between labs]()<br>
+[Catch-up script to move between labs](./lab_catchup.md)<br>

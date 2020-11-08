@@ -4,6 +4,10 @@
 
 This steps below can be used to run a local instance of Couchbase Server.  The instance will include a subset of the retail sample dataset used in the labs.
 
+<br>
+
+[Back to Project Home](../README.md)<br> 
+
 # Prerequisites
 
 1. *Docker*

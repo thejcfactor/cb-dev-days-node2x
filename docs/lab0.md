@@ -4,7 +4,11 @@
 
 In this lab, *Docker* containers for the web UI and API will be created and started.  Follow the steps below and ask for help if stuck on a step.
 
->:exclamation:**IMPORTANT**:exclamation:<br> Make sure to read all IMPORTANT, REMEMBER, NOTES and DOCUMENTATION sections as important details will be provided in those sections.
+>:exclamation:**IMPORTANT**:exclamation:<br> Make sure to read all IMPORTANT, REMEMBER, NOTES and DOCUMENTATION sections as important details will be provided in those sections.<br>
+
+<br> 
+
+[Back to Labs](./labs.md)<br> 
 
 ## Steps
 
@@ -334,6 +338,8 @@ You can verify the Couchbase connection by using the ping endpoint under the Tes
 ```
 
 ![SwaggerUI /test/ping endpoint](./images/test_db_connection.gif)
+
+[Back to Steps](#steps)<br> 
 
 ### Appendix
 #### Node.js API Project Structure

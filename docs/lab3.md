@@ -6,6 +6,10 @@ The goal of this lab is to create the logic to enable saving, updating and retri
 
 >:exclamation:**IMPORTANT**:exclamation:<br> Make sure to read all IMPORTANT, REMEMBER, NOTES and DOCUMENTATION sections as important details will be provided in those sections.
 
+<br>
+
+[Back to Labs](./labs.md)<br> 
+
 ## Steps
 
 [Step 1: Add Logic to API](#step-1-add-logic-to-api)<br> 
@@ -352,6 +356,8 @@ Once complete, make sure the *repository.js* file is saved.  Since the API *Dock
     - If all items are deleted from the cart, the web UI should redirect to the *Home* page.
     - Going back to the *Cart* page will display a message of “No items in cart”
 
+[Back to Steps](#steps)<br> 
+
 ### Appendix
 #### Node.js API Project Structure
 
@@ -380,6 +386,8 @@ Once complete, make sure the *repository.js* file is saved.  Since the API *Dock
 |—— package.json
 |—— server.js
 ```
+
+[Back to Overview](#lab-overview)<br> 
 
 #### Authorize using the *SwaggerUI* page
 
@@ -418,6 +426,8 @@ The userInfo and customerInfo objects have been removed in order to save space. 
 }
 
 ```
+
+[Back to Overview](#lab-overview)<br> 
 
 #### Sample Order Document
 
@@ -476,6 +486,8 @@ The userInfo and customerInfo objects have been removed in order to save space. 
 }
 
 ```
+
+[Back to Overview](#lab-overview)<br> 
 
 #### Helper Methods
 
@@ -540,3 +552,5 @@ The *getNextUserId()* method uses a counter doc and atomic operations to increme
    );
  }
 ```
+
+[Back to Overview](#lab-overview)<br> 

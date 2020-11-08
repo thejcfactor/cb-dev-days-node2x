@@ -6,6 +6,10 @@ The goal of this lab is to create the logic, using Couchbase’s Node.js SDK, to
 
 >:exclamation:**IMPORTANT**:exclamation:<br> Make sure to read all IMPORTANT, REMEMBER, NOTES and DOCUMENTATION sections as important details will be provided in those sections.
 
+<br>
+
+[Back to Labs](./labs.md)<br> 
+
 ## Steps
 
 [Step 1: Add Logic to API](#step-1-add-logic-to-api)<br> 
@@ -201,6 +205,8 @@ Once complete, make sure the *repository.js* file is saved.  Since the API *Dock
 6. Click *Save*
 7. If the address updates correctly, a message will appear saying “Successfully updated address”.
 
+[Back to Steps](#steps)<br> 
+
 ### Appendix
 #### Node.js API Project Structure
 
@@ -230,6 +236,7 @@ Once complete, make sure the *repository.js* file is saved.  Since the API *Dock
 |—— server.js
 ```
 
+[Back to Overview](#lab-overview)<br> 
 
 #### Authorize using the *SwaggerUI* page
 
@@ -269,6 +276,7 @@ The userInfo and customerInfo objects have been removed in order to save space. 
 
 ```
 
+[Back to Overview](#lab-overview)<br> 
 
 #### Sample Customer Document
 
@@ -318,3 +326,5 @@ The userInfo and customerInfo objects have been removed in order to save space. 
   }
 }
 ```
+
+[Back to Overview](#lab-overview)<br> 

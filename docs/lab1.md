@@ -6,6 +6,10 @@ The goal of this lab is to register a new user and to retrieve a customer, utili
 
 >:exclamation:**IMPORTANT**:exclamation:<br> Make sure to read all IMPORTANT, REMEMBER, NOTES and DOCUMENTATION sections as important details will be provided in those sections.
 
+<br>
+
+[Back to Labs](./labs.md)<br> 
+
 ## Steps
 
 [Step 1: Register and login](#step-1-regist-and-login)<br> 
@@ -138,6 +142,8 @@ Once complete, make sure the *repository.js* file is saved.  Since the API Docke
 |—— server.js
 ```
 
+[Back to Overview](#lab-overview)<br> 
+
 #### Sample Customer Document
 
 ```json
@@ -188,3 +194,4 @@ Once complete, make sure the *repository.js* file is saved.  Since the API Docke
 
 ```
 
+[Back to Overview](#lab-overview)<br> 

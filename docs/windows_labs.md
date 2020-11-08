@@ -19,4 +19,4 @@ Each lab adds new functionality to the API.  A simple e-commerce web application
 
 ## Extra
 [Running local Couchbase Server instance](./local_couchbase_server.md)<br>
-[Catch-up script to move between labs]()<br>
+[Catch-up script to move between labs](./lab_catchup.md)<br>

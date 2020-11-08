@@ -6,6 +6,10 @@ The goal of this lab is to create the logic to enable retrieving customer specif
 
 >:exclamation:**IMPORTANT**:exclamation:<br> Make sure to read all IMPORTANT, REMEMBER, NOTES and DOCUMENTATION sections as important details will be provided in those sections.
 
+<br>
+
+[Back to Labs](./labs.md)<br> 
+
 ## Steps
 
 [Step 1: Add Logic to API](#step-1-add-logic-to-api)<br> 
@@ -202,6 +206,8 @@ Once complete, make sure the *repository.js* file is saved.  Once the code has b
 
 >**NOTE:** Until this logic is created, a message saying *“/user/checkForNewOrder operation not built yet.”* appears at the top of various pages as the web UI uses this call to populate the cart page upon a new login or page refresh.
 
+[Back to Steps](#steps)<br> 
+
 ### Appendix
 #### Node.js API Project Structure
 
@@ -230,6 +236,8 @@ Once complete, make sure the *repository.js* file is saved.  Once the code has b
 |—— package.json
 |—— server.js
 ```
+
+[Back to Overview](#lab-overview)<br> 
 
 #### Authorize using the *SwaggerUI* page
 
@@ -269,6 +277,7 @@ The userInfo and customerInfo objects have been removed in order to save space. 
 
 ```
 
+[Back to Overview](#lab-overview)<br> 
 
 #### Sample Order Document
 
@@ -326,3 +335,5 @@ The userInfo and customerInfo objects have been removed in order to save space. 
   "grandTotal": 60.74
 }
 ```
+
+[Back to Overview](#lab-overview)<br> 
