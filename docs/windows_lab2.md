@@ -99,9 +99,9 @@ Notes about the code:
 - Line 33:  Using the multi API, do a bulk get operation to get all the product documents returned from the search
 - *outputMessage()*:  a helper method used to easily print out information to the console, method can be found in the /library directory (see API’s project structure detailed in the [Appendix](#nodejs-api-project-structure))
 - try/catch & err object handling is purposefully done in a generic fashion.  The lab participant is free to add logic accordingly to test out various methods of handling errors.
-- If you would like to uncomment and test the outputMessage() code blocks, remember that that output will be visible in the console logs.  Run ```docker logs api``` to view it.
+- If you would like to uncomment and test the outputMessage() code blocks, remember that that output will be visible in the console logs.
 
-Once complete, make sure the *repository.js* file is saved.  Since the API *Docker* container maps to the API’s working directory, any updates made to the API code should be reflected in the container.  Once the code has been saved, the product search functionality should be active within the web UI.   Follow the steps below to verify the *searchProducts()* logic.
+Once complete, make sure the *repository.js* file is saved.  Once the code has been saved, the product search functionality should be active within the web UI.   Follow the steps below to verify the *searchProducts()* logic.
 
 1. Go to
 2. If not logged in:

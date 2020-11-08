@@ -111,7 +111,7 @@ Notes about the code:
 - *outputMessage()*:  a helper method used to easily print out information to the console, method can be found in the /library directory (see API’s project structure detailed in the [Appendix](#nodejs-api-project-structure))
 - try/catch & err object handling is purposefully done in a generic fashion.  The lab participant is free to add logic accordingly to test out various methods of handling errors.
 
-Once complete, make sure the *repository.js* file is saved.  Since the API *Docker* container maps to the API’s working directory, any updates made to the API code should be reflected in the container.  Once the code has been saved, the functionality to retrieve a customer’s previous (i.e. not new/pending order) orders should be active within the web UI.   Follow the steps below to verify the *getOrders()* logic.
+Once complete, make sure the *repository.js* file is saved.  Once the code has been saved, the functionality to retrieve a customer’s previous (i.e. not new/pending order) orders should be active within the web UI.   Follow the steps below to verify the *getOrders()* logic.
 
 >**NOTE:**  Using the *getOrders()* requires authorization, if wanting to test the logic via the *SwaggerUI* page, follow the authorization steps listed in the [Appendix](#authorize-using-the-swaggerui-page).
 
@@ -198,7 +198,7 @@ Notes about the code:
 - *outputMessage()*:  a helper method used to easily print out information to the console, method can be found in the /library directory (see API’s project structure detailed in the [Appendix](#nodejs-api-project-structure))
 - try/catch & err object handling is purposefully done in a generic fashion.  The lab participant is free to add logic accordingly to test out various methods of handling errors.
 
-Once complete, make sure the *repository.js* file is saved.  Since the API *Docker* container maps to the API’s working directory, any updates made to the API code should be reflected in the container.  Once the code has been saved, the functionality to retrieve a customer’s new/pending order should be active within the web UI.   To verify if the logic is working correctly, after an order has been created (see Lab 3), the cart icon on the top left should be populated with the items from the pending order after a page refresh, if the session is still active, or after logging in.
+Once complete, make sure the *repository.js* file is saved.  Once the code has been saved, the functionality to retrieve a customer’s new/pending order should be active within the web UI.   To verify if the logic is working correctly, after an order has been created (see Lab 3), the cart icon on the top left should be populated with the items from the pending order after a page refresh, if the session is still active, or after logging in.
 
 >**NOTE:** Until this logic is created, a message saying *“/user/checkForNewOrder operation not built yet.”* appears at the top of various pages as the web UI uses this call to populate the cart page upon a new login or page refresh.
 
@@ -326,4 +326,3 @@ The userInfo and customerInfo objects have been removed in order to save space. 
   "grandTotal": 60.74
 }
 ```
-

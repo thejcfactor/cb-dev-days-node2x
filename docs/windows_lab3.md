@@ -93,7 +93,7 @@ Notes about the code:
 - *outputMessage()*:  a helper method used to easily print out information to the console, method can be found in the /library directory (see API’s project structure detailed in the [Appendix](#nodejs-api-project-structure))
 - try/catch & err object handling is purposefully done in a generic fashion.  The lab participant is free to add logic accordingly to test out various methods of handling errors.
 
-Once complete, make sure the *repository.js* file is saved.  Since the API *Docker* container maps to the API’s working directory, any updates made to the API code should be reflected in the container.  Once the code has been saved, the functionality to retrieve a specific order can be tested.  Using the *getOrder()* requires authorization, if wanting to test the logic via the SwaggerUI page, follow the authorization steps listed in the [Appendix](#authorize-using-the-swaggerui-page).  Follow the steps below to verify the *getOrder()* logic.
+Once complete, make sure the *repository.js* file is saved. Once the code has been saved, the functionality to retrieve a specific order can be tested.  Using the *getOrder()* requires authorization, if wanting to test the logic via the *SwaggerUI* page, follow the authorization steps listed in the [Appendix](#authorize-using-the-swaggerui-page).  Follow the steps below to verify the *getOrder()* logic.
 
 1. Navigate to the *SwaggerUI* page:  http://localhost:3000/api-docs/
 2. Click on the */user/getOrder* endpoint
@@ -193,7 +193,7 @@ Notes about the code:
 - *outputMessage()*:  a helper method used to easily print out information to the console, method can be found in the /library directory (see API’s project structure detailed in the [Appendix](#nodejs-api-project-structure))
 - try/catch & err object handling is purposefully done in a generic fashion.  The lab participant is free to add logic accordingly to test out various methods of handling errors.
 
-Once complete, make sure the *repository.js* file is saved.  Since the API *Docker* container maps to the API’s working directory, any updates made to the API code should be reflected in the container.  Once the code has been saved, the save order functionality should be active within the web UI.   Follow the steps below to verify the *saveOrder()* logic.
+Once complete, make sure the *repository.js* file is saved.  Once the code has been saved, the save order functionality should be active within the web UI.   Follow the steps below to verify the *saveOrder()* logic.
 
 >**NOTE:**  Using the *saveOrder()* requires authorization, if wanting to test the logic via the *SwaggerUI* page, follow the authorization steps listed in the [Appendix](#authorize-using-the-swaggerui-page).
 
@@ -262,7 +262,7 @@ Notes about the code:
 - *outputMessage()*:  a helper method used to easily print out information to the console, method can be found in the /library directory (see API’s project structure detailed in the [Appendix](#nodejs-api-project-structure))
 - try/catch & err object handling is purposefully done in a generic fashion.  The lab participant is free to add logic accordingly to test out various methods of handling errors.
 
-Once complete, make sure the *repository.js* file is saved.  Since the API *Docker* container maps to the API’s working directory, any updates made to the API code should be reflected in the container.  Once the code has been saved, the replace order functionality should be active within the web UI.   Follow the steps below to verify the *replaceOrder()* logic.  
+Once complete, make sure the *repository.js* file is saved.  Once the code has been saved, the replace order functionality should be active within the web UI.   Follow the steps below to verify the *replaceOrder()* logic.
 
 >**NOTE:**  Using the *replaceOrder()* requires authorization, if wanting to test the logic via the *SwaggerUI* page, follow the authorization steps listed in the [Appendix](#authorize-using-the-swaggerui-page).
 
@@ -333,7 +333,7 @@ Notes about the code:
 - *outputMessage()*:  a helper method used to easily print out information to the console, method can be found in the /library directory (see API’s project structure detailed in the [Appendix](#nodejs-api-project-structure))
 - try/catch & err object handling is purposefully done in a generic fashion.  The lab participant is free to add logic accordingly to test out various methods of handling errors.
 
-Once complete, make sure the *repository.js* file is saved.  Since the API *Docker* container maps to the API’s working directory, any updates made to the API code should be reflected in the container.  Once the code has been saved, the delete order functionality should be active within the web UI.   Follow the steps below to verify the *deleteOrder()* logic.
+Once complete, make sure the *repository.js* file is saved.  Once the code has been saved, the delete order functionality should be active within the web UI.   Follow the steps below to verify the *deleteOrder()* logic.
 
 >**NOTE:**  Using the *deleteOrder()* requires authorization, if wanting to test the logic via the *SwaggerUI* page, follow the authorization steps listed in the [Appendix](#authorize-using-the-swaggerui-page).
 
@@ -540,3 +540,4 @@ The *getNextUserId()* method uses a counter doc and atomic operations to increme
    );
  }
 ```
+

@@ -182,10 +182,13 @@ Edit the following values:
     >:exclamation:**IMPORTANT:**:exclamation: During the summit, host information will be provided.  However, if working on the labs outside of the summit and utilizing a local instance of Couchbase, use the following:
     >- MacOS:<br> 
     >&nbsp;&nbsp;&nbsp;&nbsp;**hostname**: "host.docker.internal"<br> 
-    >&nbsp;&nbsp;&nbsp;&nbsp;**secure**: false<br> 
+    >&nbsp;&nbsp;&nbsp;&nbsp;**secure**: false<br>
+    >&nbsp;&nbsp;&nbsp;&nbsp;**username**: "Administrator"<br> 
+    >
     >- Other:<br> 
     >&nbsp;&nbsp;&nbsp;&nbsp;**hostname**: "localhost"<br> 
     >&nbsp;&nbsp;&nbsp;&nbsp;**secure**: false<br> 
+    >&nbsp;&nbsp;&nbsp;&nbsp;**username**: "Administrator"<br> 
 
 
 ```json
@@ -330,7 +333,7 @@ You can verify the Couchbase connection by using the ping endpoint under the Tes
 }
 ```
 
-![SwaggerUI /test/ping endpoint](./images/swagger_test_ping.gif)
+![SwaggerUI /test/ping endpoint](./images/test_db_connection.gif)
 
 ### Appendix
 #### Node.js API Project Structure

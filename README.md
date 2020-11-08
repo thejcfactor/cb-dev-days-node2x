@@ -1,12 +1,22 @@
 # Project Overview
-This project is a Node.js API that demonstrates some of the capabilities of Couchbase.  It was built for Developer track of the Couchbase NoSQL Summit and works in conjuction with a Web UI (Github repository [here](https://github.com/thejcfactor/cb-dev-days-web)).  The API is built using the Couchbase 2.x node.js SDK (SDK documentation [here](https://docs.couchbase.com/nodejs-sdk/2.6/start-using-sdk.html)).  The project contains a handful of labs that allow participants to build out the functionality of the simple e-commerce web UI.  The details of each lab are listed below.
+This project is a Node.js API that demonstrates some of the capabilities of Couchbase Server.  It was built for Developer track of the Couchbase NoSQL Summit and works in conjunction with a web application (Github repository [here](https://github.com/thejcfactor/cb-dev-days-web)).  The API is built using the Couchbase 2.x node.js SDK (SDK documentation [here](https://docs.couchbase.com/nodejs-sdk/2.6/start-using-sdk.html)).  The project contains a handful of labs that allow participants to build out the functionality of the simple e-commerce web application.  The details of each lab are listed below.
 
->:exclamation:**IMPORTANT**:exclamation:<br> Each lab contains sections marked with IMPORTANT, REMEMBER, NOTES and DOCUMENTATION.  Please be sure to read each section as it will contain important information related to the lab.
+>:exclamation:**IMPORTANT**:exclamation:<br> Please be sure to read sections labeled IMPORTANT, REMEMBER, NOTES and DOCUMENTATION as the section will contain important information related to setup and/or the labs.
+
+# Prerequisites
+
+1. *Git*
+    - Used to clone code repositories (can use *Git Bash* on Windows machines).
+2. *Docker*
+    - *Docker* containers have been published for the API and web UI projects.  The labs assume participants are using the published containers.  However, all of the code can be run locally. 
+
+>**NOTE:** If you want to run the code locally, *Node.js* needs to be installed.  You do not need to install *Docker* if running code locally.
 
 # Labs
-[Lab 0 - Setup](./docs/lab0.md)<br> 
-[Lab 1 - Register + K/V get](./docs/lab1.md)<br> 
-[Lab 2 - FTS Operations](./docs/lab2.md)<br> 
-[Lab 3 - K/V Operations](./docs/lab3.md)<br> 
-[Lab 4 - N1QL Operations](./docs/lab4.md)<br> 
-[Lab 5 - K/V Sub-Document Operations](./docs/lab5.md)<br> 
+The labs are split up into different versions based on the participant's operating system.  
+
+>:exclamation:**IMPORTANT**:exclamation:<br>If using *Docker* for *Windows* and running *Linux* containers, using the labs for *MacOS*/*Linux* should suffice.  The *Windows* labs are geared towards participants running *Windows* wanting to run the code locally and not use *Docker*.
+
+[Labs (*MacOS*/*Linux*)](./docs/labs.md)<br>
+[Labs (*Windows*)](./docs/windows_labs.md)
+
