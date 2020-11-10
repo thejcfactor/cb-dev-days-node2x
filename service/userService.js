@@ -39,7 +39,11 @@ function register(userInfo, callback) {
       response.message = "Successfully registered customer/user.";
       callback(response);
     } else {
-      response.message = "Error registering customer/user.";
+      if(err == "Username already exists"){
+        response.message = "Cannot create user.  Username already exists."
+      }else{
+        response.message = "Error registering customer/user.";
+      }
       response.error = err;
       callback(response);
     }

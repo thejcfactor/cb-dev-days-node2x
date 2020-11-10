@@ -64,20 +64,13 @@ class Repository {
     });
   }
 
-  ping(services, callback) {
-    let couchbaseServices = [];
-
-    services.forEach((service) => {
-      if (service == "KeyValue") {
-        couchbaseServices.push(couchbase.ServiceType.KeyValue);
-      } else if (service == "Query") {
-        couchbaseServices.push(couchbase.ServiceType.Query);
-      } else if (service == "Search") {
-        couchbaseServices.push(couchbase.ServiceType.Search);
+  ping(callback) {
+    this.getObjectByKey("customer_0", function(err, result) {
+      if (!err) {
+        return callback(err, "Connected to Couchbase server.");
       }
+      callback(err, null);
     });
-
-    this.bucket.ping(couchbaseServices, callback);
   }
 
   createAccount(userInfo, callback) {
@@ -85,32 +78,44 @@ class Repository {
       let scope = this;
       let acct = { customerInfo: null, userInfo: null };
 
-      this.getNewCustomerDocument(userInfo, function(err, customerDoc) {
+      this.getUserInfo(userInfo.username, false, function(err, existingUser) {
         if (err) {
           return callback(err, null);
         }
-        scope.bucket.insert(customerDoc._id, customerDoc, function(
-          err,
-          savedCustomer
-        ) {
+
+        console.log("existing user: ", existingUser);
+
+        if (existingUser != null) {
+          return callback("Username already exists", null);
+        }
+
+        scope.getNewCustomerDocument(userInfo, function(err, customerDoc) {
           if (err) {
             return callback(err, null);
           }
-          acct = { customerInfo: customerDoc };
-          scope.getNewUserDocument(userInfo, function(err, userDoc) {
+          scope.bucket.insert(customerDoc._id, customerDoc, function(
+            err,
+            savedCustomer
+          ) {
             if (err) {
               return callback(err, null);
             }
-            scope.bucket.insert(userDoc._id, userDoc, function (
-              err,
-              savedUser
-            ) {
+            acct = { customerInfo: customerDoc };
+            scope.getNewUserDocument(userInfo, function(err, userDoc) {
               if (err) {
                 return callback(err, null);
               }
-              userDoc.password = null;
-              acct.userInfo = userDoc;
-              callback(null, acct);
+              scope.bucket.insert(userDoc._id, userDoc, function(
+                err,
+                savedUser
+              ) {
+                if (err) {
+                  return callback(err, null);
+                }
+                userDoc.password = null;
+                acct.userInfo = userDoc;
+                callback(null, acct);
+              });
             });
           });
         });
@@ -228,7 +233,8 @@ class Repository {
        *        use "basic-search" as index name for searchQuery
        *  2.  K/V getMulti() using FTS results
        *
-       */      
+       */
+
       callback(null, "NOP");
     } catch (err) {
       //Optional - add business logic to handle error types
@@ -415,7 +421,7 @@ class Repository {
    */
 
   getNewCustomerDocument(userInfo, callback) {
-    this.getNextCustomerId(function (err, custId) {
+    this.getNextCustomerId(function(err, custId) {
       if (err) {
         return callback(err, null);
       }
@@ -423,9 +429,8 @@ class Repository {
       let key = `customer_${custId}`;
       let date = new Date();
       let createDateTimeStamp = Math.floor(date / 1000);
-      let currentDay = `${date.getFullYear()}-${
-        date.getMonth() + 1
-      }-${date.getDate()}`;
+      let currentDay = `${date.getFullYear()}-${date.getMonth() +
+        1}-${date.getDate()}`;
 
       let customerDoc = {
         doc: {
@@ -474,7 +479,7 @@ class Repository {
   }
 
   getNewUserDocument(userInfo, callback) {
-    this.getNextUserId(function (err, userId) {
+    this.getNextUserId(function(err, userId) {
       if (err) {
         return callback(err, null);
       }
@@ -496,7 +501,7 @@ class Repository {
       this.counterIds["customer"],
       1,
       { initial: 1000 },
-      function (err, res) {
+      function(err, res) {
         if (err) {
           return callback(err, null);
         }
@@ -524,7 +529,7 @@ class Repository {
       this.counterIds["order"],
       1,
       { initial: 5000 },
-      function (err, res) {
+      function(err, res) {
         if (err) {
           return callback(err, null);
         }
