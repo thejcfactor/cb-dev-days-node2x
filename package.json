@@ -19,7 +19,7 @@
     "cors": "^2.8.5",
     "couchbase": "^2.6.12",
     "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "rootpath": "^0.1.2",
     "swagger-jsdoc": "^3.5.0",
     "swagger-ui-express": "^4.1.3",
